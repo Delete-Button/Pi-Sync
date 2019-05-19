@@ -9,5 +9,5 @@ read IP
 echo 'Input the Path to the destination folder'
 read destPath
 scp $sshKeyname.pub pi@$IP:$destPath
-ssh pi@$IP 'cd ~; touch .ssh/authorized_keys; chmod 600 .ssh/authorized_keys; cd  $destPath; cat $sshKeyname >> ~/.ssh/authorized_keys; exit'
+ssh -t pi@$IP "cd ~; touch .ssh/authorized_keys; chmod 600 .ssh/authorized_keys; cd  $destPath; cat $sshKeyname >> ~/.ssh/authorized_keys; exit"
 mv $sshKeyname ~/.ssh/

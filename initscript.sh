@@ -3,11 +3,28 @@
 #type in anything wrong or you have to start over
 echo 'Name the SSH Key'
 read sshKeyname
-ssh-keygen -b 2048 -t rsa -f $sshKeyname -P -N
+ssh-keygen -b 2048 -t rsa -f $sshKeyname 
 echo 'Input the IP of the remote Pi'
 read IP
-echo 'Input the Path to the destination folder'
-read destPath
-scp $sshKeyname.pub pi@$IP:$destPath
-ssh -t pi@$IP "cd ~; touch .ssh/authorized_keys; chmod 600 .ssh/authorized_keys; cd  $destPath; cat $sshKeyname >> ~/.ssh/authorized_keys; exit"
+scp $sshKeyname.pub pi@$IP:~/
+scp remotescript.sh pi@$IP:~/
+ssh -T pi@$IP "cd ~; chmod 700 remotescript.sh; ./remotescript.sh $sshKeyname; exit;"
 mv $sshKeyname ~/.ssh/
+echo ' Time for the Automated Script'
+echo '*******************************'
+echo 'Input a Script name'
+read scriptName
+echo 'Input a Source Directory (from the following)'
+ls /home/pi/Desktop/PiShare/
+read srcPath
+touch Pi-Sync_$scriptName.sh
+echo '#/bin/bash!' >> Pi-Sync_$scriptName.sh
+echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/Share/" >> Pi-Sync_$scriptName.sh 
+chmod 700 Pi-Sync_$scriptName.sh
+./Pi-Sync_$scriptName.sh
+crontab -l > tmpCron
+echo "0 5 * * * /home/pi/Documents/Pi-Sync/Pi-Sync_$scriptName.sh" > tmpCron
+crontab tmpCron 
+rm tmpCron 
+rm $sshKeyname.pub
+echo 'die' 

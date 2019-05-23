@@ -24,6 +24,8 @@
     
     If changes need to be made to a script post its creation, use the `config-Sync.sh` Script while in the directory of the script to be configured; you must also type `chmod 700 config-Sync.sh` in order to execute it. 
 
+    If a script needs to be taken off of the Cron Table then use the `config-Crontab.sh` Script. You must type `chmod 700 config-Sync.sh` in order to execute it.  
+
 ## Troubleshooting
     If anything goes wrong, remember a few key commands and things to look out for 
     

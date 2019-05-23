@@ -14,3 +14,4 @@ while read line; do
         n=$((n+1))
      fi
 done < runTab
+rm runTab

@@ -30,10 +30,13 @@ touch Pi-Sync_$scriptName.sh
 echo '#/bin/bash!' >> Pi-Sync_$scriptName.sh
 echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/Share/" >> Pi-Sync_$scriptName.sh 
 chmod 700 Pi-Sync_$scriptName.sh
-./Pi-Sync_$scriptName.sh
+if [ ! -d ~/.rsync ]; then mkdir ~.rsync/; fi
+chmod 700 ~/.rsync/
+mv Pi-Sync_$scriptName.sh ~/.rsync/
+~/.rsync/./Pi-Sync_$scriptName.sh
 #Sets the new script on the user's time table to be run every 5 minutes
 crontab -l > tmpCron
-echo "0 5 * * * /home/pi/Documents/Pi-Sync/Pi-Sync_$scriptName.sh" > tmpCron
+echo "0 5 * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" > tmpCron
 crontab tmpCron 
 #Clean up the garbage files
 rm tmpCron 

@@ -5,7 +5,7 @@ read scriptName
 crontab -l > runTab
 toRemove="$(grep $scriptName runTab)"
 while read line; do
-    if [[ "$line" == "0 5 * * * /home/pi/Documents/Pi-Sync/Pi-Sync_$scriptName.sh" ]]; then
+    if [[ "$line" == "0 5 * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" ]]; then
         sed -i "${n}"d runTab
         crontab runTab
         exit
@@ -15,3 +15,4 @@ while read line; do
      fi
 done < runTab
 rm runTab
+echo 'Script removed from Automation'

@@ -1,5 +1,5 @@
 #/bin/bash!
-#ajaxx . reece . delete-button
+#ajaxx . delete-button
 #version 1, it has no error handling so don't type in anything wrong or you have to start over
 #Set the Name of the SSH Keys
 echo 'Name the SSH Key'

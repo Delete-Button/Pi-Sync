@@ -1,4 +1,5 @@
 #/bin/bash!
+# ajaxx. delete-button 
 # Accidentally deleted the file so this is a rewrite
 # sshKeyName is the name of the key made and is passed from initscript into this when run on the target / remote machine
 sshKeyName=$1

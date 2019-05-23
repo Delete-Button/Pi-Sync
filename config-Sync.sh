@@ -1,4 +1,4 @@
-/bin/bash/!
+#/bin/bash/!
 #Allows for the configuration of Sync Scripts post creation
 echo 'Please enter the name of the script (Pi-Sync_*input*.sh)'
 read scriptName

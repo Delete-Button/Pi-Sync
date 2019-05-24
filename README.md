@@ -1,13 +1,13 @@
 # Welcome to the Pi-Sync Repositiory!
 
-## This repo holds the following 
+## This repo holds the following
 - Initscript.sh
 - remotescript.sh
 - README.md
 - config-Sync.sh
 - config-Crontab.sh
 
-## Purpose:
+## Purpose
 To allow for a seamless and automated upadate / syncing of linux machines utilizing rsync, hardcoded directories and users,
   as well as the initialization and configuration of SSH Keys between the host machine and remote machines. 
 

@@ -30,7 +30,7 @@ touch Pi-Sync_$scriptName.sh
 echo '#/bin/bash!' >> Pi-Sync_$scriptName.sh
 echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/Share/" >> Pi-Sync_$scriptName.sh 
 chmod 700 Pi-Sync_$scriptName.sh
-if [ ! -d ~/.rsync ]; then mkdir ~.rsync/; fi
+if [ ! -d ~/.rsync ]; then mkdir ~/.rsync/; fi
 chmod 700 ~/.rsync/
 mv Pi-Sync_$scriptName.sh ~/.rsync/
 ~/.rsync/./Pi-Sync_$scriptName.sh

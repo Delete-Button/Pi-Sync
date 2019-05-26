@@ -28,7 +28,7 @@ read srcPath
 #Creates the new script, makes it executeable and executes it
 touch Pi-Sync_$scriptName.sh
 echo '#/bin/bash!' >> Pi-Sync_$scriptName.sh
-echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/Share/" >> Pi-Sync_$scriptName.sh 
+echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/share/" >> Pi-Sync_$scriptName.sh 
 chmod 700 Pi-Sync_$scriptName.sh
 if [ ! -d ~/.rsync ]; then mkdir ~/.rsync/; fi
 chmod 700 ~/.rsync/

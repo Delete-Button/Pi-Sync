@@ -22,9 +22,10 @@ Initscript calls for:
 remotescript calls for: 
 - `chmod`, 
 - `cat`
-config-Sync calls for: 
-- `echo` 
-config-Crontab calls for: 
+config/Delete-Sync calls for: 
+- `echo`
+- `rm` 
+config/Delete-Crontab calls for: 
 - `crontab`, 
 - `rm`, 
 - `echo`

@@ -1,6 +1,5 @@
 #/bin/bash/!
 # ajaxx . delete-button
-
 #Script to change the number of minutes between syncs of a script
 echo 'This script only functions when the script being changed has not had its Cron Table entry changed'
 echo 'Input the name of the script that needs to have its timing altered (Pi-Sync_*Your input*.sh)'

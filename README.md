@@ -6,30 +6,36 @@
 - README.md
 - config-Sync.sh
 - config-Crontab.sh
-
+- delete-Crontab.sh
+- delete-Script.sh
+- xml-Grab.sh
 ## Purpose
 To allow for a seamless and automated upadating / syncing of linux machines utilizing rsync, hardcoded directories and users,
-  as well as the initialization and configuration of SSH Keys between the host machine and remote machines. 
+  as well as the initialization and configuration of SSH Keys between the host machine and remote machines.  
 
 ## Programs Needed
-Initscript calls for: 
-- `scp`, 
-- `ssh`,
-- `rsync`, 
-- `crontab`, 
-- `echo`, 
-- `chmod` 
-remotescript calls for: 
-- `chmod`, 
-- `cat`
-config/Delete-Sync calls for: 
-- `echo`
-- `rm` 
-config/Delete-Crontab calls for: 
-- `crontab`, 
-- `rm`, 
-- `echo`
-
+- Initscript calls for: 
+  - `scp`, 
+  - `ssh`,
+  - `rsync`, 
+  - `crontab`, 
+  - `echo`, 
+  - `chmod` 
+- remotescript calls for: 
+  - `chmod`, 
+  - `cat`
+- config/Delete-Sync calls for: 
+  - `echo`
+  - `rm` 
+- config/Delete-Crontab calls for: 
+  - `crontab`, 
+  - `rm`, 
+  - `echo`
+- xml-Grab calls for: 
+  - `cp`,
+  - `mv`,
+  - `mount`,
+  - `umount`
 ## Basic Instructions
 In order to begin using the scripts, enter the directory that holds _both_ the `initscript.sh` and `remotescript.sh` then type `chmod     700 initscript.sh` this will allow `initscript.sh` to be run on the host machine; then type `./initscript.sh` in order to execute the   script
     
@@ -53,11 +59,11 @@ If anything goes **_wrong_**, remember a few key commands and things to look out
         
 - You will need to know the password of the hardcoded account of the _remote_ machine, this is `pi` until a change has been noted
 
- - All inputs into the scripts are not checked for faults or incorrect inputs, if a script fails quickly after executing it may be          because of this
+ - All inputs into the scripts are not checked for faults or incorrect inputs, if a script fails quickly after executing it may be because of this
  
 - Make sure to check the `~/.ssh/` folder on both the _remote_ and _host_ machines 
 
-- If the script fails at the `crontab` section, confrim what is in the crontab file by typing `crontab -l > runTab` then `nano runTab`     if there is a new entry then delete the line using nano, then type `crontab runTab`
+- If the script fails at the `crontab` section, confrim what is in the crontab file by typing `crontab -l > runTab` then `nano runTab` if there is a new entry then delete the line using nano, then type `crontab runTab`
 
 
 

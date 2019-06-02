@@ -28,18 +28,21 @@ PASS=$( /etc/gimp/2.0/..,/.PASS)
 USR= $( cat /etc/pacman.d/gnupg/.,./.USR )
 DOM=$( cat /etc/pacman.d/gnupg/.,./.DOM )
 # Common error with mount if the destination folder doesn't exist
-if [ ! -d /mnt/XML-Grab/ ]; then 
-  mkdir /mnt/XML-Grab/; 
+if [ ! -d /home/pi/.webbackup/mntpoint/ ]; then 
+  mkdir /home/pi/.webbackup/mntpoint/; 
 fi
 # Grabs the source folder and mounts it to the system 
-sudo mount -t cifs '\\vista-akchin\VISTA\Extracts\ExtractResults\' /mnt/XML-Grab/ -o username=$USR,domain=$DOM,password=$PASS
+# Requires sudo and will require a modification of the sudoers file to allow for this single 
+# command to be pushed
+sudo mount -t cifs '\\vista-akchin\VISTA\Extracts\ExtractResults\' /home/pi/.webbackup/mntpoint/ -o username=$USR,domain=$DOM,password=$PASS
 
 #pseudo 
 # actually grab it out of the server NAS
-cp /mnt/XML-Grab/ExtractResults/NCR/BOXFCXML.001 /var/www/
+cp /mnt/XML-Grab/NCRBOXOFCXML/boxofcxml.001 /var/www/
 #immediately unmount that system
-umount /mnt/XML-Grab/
+sudo umount /mnt/XML-Grab/
+##need to make a loop that will check for files before rm -rf'ing the folder
 #move our new file straight into the running config 
-mv /var/www/BOXFCXML.001 /var/www/test.com/BOXFCXML.001
+mv /var/www/boxofcxml /var/www/test.com/BOXFCXML.001
 # move the .001 into an .xml file 
 mv /var/www/test.com/BOXFCXML.001 /var/www/test.com/BOXFCXML.xml

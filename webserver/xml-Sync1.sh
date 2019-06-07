@@ -12,25 +12,17 @@ fi
 
 cp -r /var/www/test.com/ ~/.webbackup/
 
-# i hate using hardcoded passwords ,,, so here's some hardcoded passwords
-# need to find places for files ,, maybe an encryption>>????
-PASS=$()
-USR=$()
-DOM=$()
-
-# Now we mount
-sudo mount -t cifs '\\vista-akchin\VISTA\Extracts\ExtractResults\' /home/pi/.webbackup/mntpoint/ -o username=$USR,domain=$DOM,password=$PASS
-
+sudo mount -t cifs '\\vista-akchin\VISTA\Extracts\ExtractResults\' /home/pi/.webbackup/mntpoint/ -o cred=/root/.cred/.cred
 # Copy, mv will cripple the whole building; cp makes it happy
-cp /mnt/XML-Grab/NCRBOXOFCXML/boxofcxml.001 /var/www/
+cp /home/pi/.webbackup/mntpoint/NCRBOXOFCXML/boxofcxml.001 /var/www/
 
 # sudo, because linux trusts no one
-sudo umount /mnt/XML-Grab/4
+sudo umount /home/pi/.webbackup/mntpoint/
 
 # We do NOT want this to be mounted for a long time, ALERT.txt will pop up 
-FILES=( /home/pi/.webbackup/XML-Grab/* )
+FILES=( /home/pi/.webbackup/mntpoint/* )
 if [ ${#files[@]} -gt 0 ]; then 
-  sudo umount /home/pi/.webbackup/XML-Grab/;
+  sudo umount /home/pi/.webbackup/mntpoint/;
   touch /home/pi/Desktop/ALERT.txt
   echo 'XML-Grab Folder is Still mounted!' > /home/pi/Desktop/ALERT.txt
   echo "use `umount /home/pi/.webbackup/XML-Grab/` and troubleshoot from there" >> /home/pi/Desktop/ALERT.txt

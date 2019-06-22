@@ -8,13 +8,15 @@
 # Time to grab the running config, if anything goes wrong we have a back up!
 if [ ! -d ~/.webbackup/ ]; then
   mkdir ~/.webbackup/;
+  mkdir ~/.webbackup/webdata/;
+  mkdir ~/.webbackup/mntpoint/;
 fi
 
-cp -r /var/www/test.com/ ~/.webbackup/
-
+cp -r /usr/share/nginx/www/ ~/.webbackup/
+# Using the cred file instead of passing creds through the script
 sudo mount -t cifs '\\vista-akchin\VISTA\Extracts\ExtractResults\' /home/pi/.webbackup/mntpoint/ -o cred=/root/.cred/.cred
 # Copy, mv will cripple the whole building; cp makes it happy
-cp /home/pi/.webbackup/mntpoint/NCRBOXOFCXML/boxofcxml.001 /var/www/
+cp /home/pi/.webbackup/mntpoint/NCRBOXOFCXML/boxofcxml.001 /usr/share/nginx/www/
 
 # sudo, because linux trusts no one
 sudo umount /home/pi/.webbackup/mntpoint/
@@ -28,6 +30,3 @@ if [ ${#files[@]} -gt 0 ]; then
   echo "use `umount /home/pi/.webbackup/XML-Grab/` and troubleshoot from there" >> /home/pi/Desktop/ALERT.txt
 fi
 
-# Move this new file into our working directory and replace its older versions.
-mv /var/www/boxofcxml.001 /var/www/test.com/boxofcxml.001
-mv /var/www/test.com/BOXFCXML.001 /var/www/test.com/BOXFCXML.xml

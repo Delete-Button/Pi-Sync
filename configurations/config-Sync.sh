@@ -28,5 +28,5 @@ read
 echo 'Reconfiguring Script'
 # Pushes the required data to the script, reconfiguring it and letting the user know what is happening
 echo '#/bin/bash!' > Pi-Sync_$scriptName.sh
-echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyName\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/share/" >> Pi-Sync_$scriptName.sh
+echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyName\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/share/" >> /home/pi/.rsync/Pi-Sync_$scriptName.sh
 echo 'Reconfigure Complete'

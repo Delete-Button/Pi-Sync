@@ -15,7 +15,7 @@ scp $sshKeyname.pub remotescript.sh pi@$IP:~/
 #Also requires authentication from user, sets remotescript to executable, executes, and exits
 ssh -T pi@$IP "cd ~; chmod 700 remotescript.sh; ./remotescript.sh $sshKeyname; exit;"
 #Moves the private key somewhere better than wherever this is executed
-mv $sshKeyname ~/.ssh/
+mv $sshKeyname /home/pi/.ssh/
 #This builds the script that will run rsync for each Pi
 echo ' Time for the Automated Script'
 echo '*******************************'
@@ -32,13 +32,13 @@ echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeynam
 chmod 700 Pi-Sync_$scriptName.sh
 if [ ! -d ~/.rsync ]; then mkdir ~/.rsync/; fi
 chmod 700 ~/.rsync/
-mv Pi-Sync_$scriptName.sh ~/.rsync/
-~/.rsync/./Pi-Sync_$scriptName.sh
+mv Pi-Sync_$scriptName.sh /home/pi/.rsync/
+/home/pi/.rsync/./Pi-Sync_$scriptName.sh
 #Sets the new script on the user's time table to be run every 5 minutes
 crontab -l > tmpCron
 echo "0 5 * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" > tmpCron
 crontab tmpCron 
 #Clean up the garbage files
 rm tmpCron 
-rm $sshKeyname.pub
+rm /home/pi/.ssh/$sshKeyname.pub
 echo 'Script Created, Syncing ready' 

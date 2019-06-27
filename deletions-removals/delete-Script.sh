@@ -6,8 +6,8 @@ read scriptName
 echo 'Input the ssh Keyname'
 read sshKeyName
 # Removes the script and key from system 
-rm ~/.rsync/Pi-Sync_$scriptName.sh
-rm ~/.ssh/sshKeyName 
+rm /home/pi/.rsync/Pi-Sync_$scriptName.sh
+rm /home/pi/.ssh/sshKeyName 
 crontab -l > runTab
 # This loop is documented in the `delete-Crontab` script
 while read line; do

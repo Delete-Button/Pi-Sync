@@ -36,6 +36,18 @@ To allow for a seamless and automated upadating / syncing of linux machines util
   - `mv`,
   - `mount`,
   - `umount`
+## Explanation
+  The signage works in one of two ways: either a chromium page that displays certain content, or a source folder on the device that shows videos/pictures.
+  This repo / solution has systems in place for both. 
+  ### Chromium
+  Firstly, the chromium page. This is solved using two services: `nginx` and `php7.2-fpm`. These provide pages on the servers ip address that the pis can connect to and broadcast.
+
+  This uses `cron` to scedule the times at which certain files need to be grabbed from `vista-akchin` and adds them to the webserver's data.
+  ### Syncing
+  Secondly, the source folder. By using `rsync` and ssh keys the files that need to be sent to the pis are done so securely and in a timely fashion. 
+  
+  This uses `cron` to schedule syncing times between pis and the server.
+
 ## Basic Instructions
 In order to begin using the scripts, enter the directory that holds _both_ the `initscript.sh` and `remotescript.sh` then type `chmod     700 initscript.sh` this will allow `initscript.sh` to be run on the host machine; then type `./initscript.sh` in order to execute the   script
     
@@ -63,7 +75,7 @@ If anything goes **_wrong_**, remember a few key commands and things to look out
  
 - Make sure to check the `~/.ssh/` folder on both the _remote_ and _host_ machines 
 
-- If the script fails at the `crontab` section, confrim what is in the crontab file by typing `crontab -l > runTab` then `nano runTab` if there is a new entry then delete the line using nano, then type `crontab runTab`
+- If the script fails at the `crontab` section, confirm what is in the crontab file by typing `crontab -l > runTab` then `nano runTab` if there is a new entry then delete the line using nano, then type `crontab runTab`
 
 
 

@@ -23,12 +23,12 @@ echo 'Input a Script name'
 read scriptName
 #This is the directory from which the pi will sync up to
 echo 'Input a Source Directory (from the following)'
-ls /home/pi/Desktop/PiShare/
+ls /samba/pi/pishare/
 read srcPath
 #Creates the new script, makes it executeable and executes it
 touch Pi-Sync_$scriptName.sh
 echo '#/bin/bash!' >> Pi-Sync_$scriptName.sh
-echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /home/pi/Desktop/PiShare/$srcPath/ pi@$IP:/home/pi/Desktop/share/" >> Pi-Sync_$scriptName.sh 
+echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$sshKeyname\" /samba/pi/pishare/$srcPath/ pi@$IP:/home/pi/Desktop/share/" >> Pi-Sync_$scriptName.sh 
 chmod 700 Pi-Sync_$scriptName.sh
 if [ ! -d ~/.rsync ]; then mkdir ~/.rsync/; fi
 chmod 700 ~/.rsync/
@@ -36,7 +36,7 @@ mv Pi-Sync_$scriptName.sh /home/pi/.rsync/
 /home/pi/.rsync/./Pi-Sync_$scriptName.sh
 #Sets the new script on the user's time table to be run every 5 minutes
 crontab -l > tmpCron
-echo "0 5 * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" > tmpCron
+echo "*/5 * * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" > tmpCron
 crontab tmpCron 
 #Clean up the garbage files
 rm tmpCron 

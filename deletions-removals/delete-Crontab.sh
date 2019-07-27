@@ -13,7 +13,7 @@ crontab -l > runTab
 # to find which line needs to be deleted, skipping and continuing on if the line 
 # it's on isn't the correct one 
 while read line; do
-    if [[ "$line" == "0 5 * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" ]]; then
+    if [[ "$line" == "*/5 * * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" ]]; then
         # `sed` is commonly used for surgical deletion and insertion into files
         # here we use it to take out the line `n`, or the line that holds the 
         # configuration for the script in question from `runTab`

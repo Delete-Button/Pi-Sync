@@ -11,7 +11,7 @@ rm /home/pi/.ssh/sshKeyName
 crontab -l > runTab
 # This loop is documented in the `delete-Crontab` script
 while read line; do
-    if [[ "$line" == "0 5 * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" ]]; then
+    if [[ "$line" == "*/5 * * * * /home/pi/.rsync/Pi-Sync_$scriptName.sh" ]]; then
         sed -i "${n}"d runTab 
         crontab runTab
         exit

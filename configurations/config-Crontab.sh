@@ -8,7 +8,7 @@ echo 'Input the new number of minutes between syncs (as a number, i.e 5)'
 read newTime
 crontab -l > runTab
 # Uses sed to find the line in question and replace it with a line featuring the new time
-sed -i "s/*\/5 * * * * \/home\/pi\/.rsync\/Pi-Sync_$scriptName.sh/*\/$newTime * * * * \/home\/pi\/.rsync\/Pi-Sync_$scriptName.sh/g" runTab
+sed -i "s/*\/5 \* \* \* \* \/home\/pi\/.rsync\/Pi-Sync_$scriptName.sh/\*\/$newTime \* \* \* \* \/home\/pi\/.rsync\/Pi-Sync_$scriptName.sh/g" runTab
 crontab runTab
 rm runTab
 echo "Time inbetween syncs has been changed to $newTime"

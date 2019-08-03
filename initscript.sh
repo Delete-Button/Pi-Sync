@@ -16,6 +16,7 @@ scp $sshKeyname.pub remotescript.sh pi@$IP:~/
 ssh -T pi@$IP "cd ~; chmod 700 remotescript.sh; ./remotescript.sh $sshKeyname; exit;"
 #Moves the private key somewhere better than wherever this is executed
 mv $sshKeyname /home/pi/.ssh/
+mv $sshKeyname.pub /home/pi/.ssh/
 #This builds the script that will run rsync for each Pi
 echo ' Time for the Automated Script'
 echo '*******************************'

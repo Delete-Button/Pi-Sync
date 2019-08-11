@@ -13,7 +13,4 @@ read phpcontinue
 sudo rm /etc/nginx/sites-enabled/default
 sudo mv default.conf /etc/nginx/conf.d/
 ## need to test before deployment
-sudo echo "php_admin_value[date.timezone] = America/Phoenix" > /etc/php/7.2/fpm/pool.d/www.conf
-sudo apt install samba 
-sudo mkdir /samba
-sudo chgrp sambashare /samba
+sudo echo "php_admin_value[date.timezone] = America/Phoenix" >> /etc/php/7.2/fpm/pool.d/www.conf

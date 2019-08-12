@@ -35,7 +35,7 @@ mv Pi-Sync_$hostName.sh /home/pi/.rsync/
 /home/pi/.rsync/./Pi-Sync_$hostName.sh
 #Sets the new script on the user's time table to be run every 5 minutes
 crontab -l > tmpCron
-echo "*/5 * * * * /home/pi/.rsync/Pi-Sync_$hostName.sh" > tmpCron
+echo "*/5 * * * * /home/pi/.rsync/Pi-Sync_$hostName.sh" >> tmpCron
 crontab tmpCron 
 #Clean up the garbage files
 rm tmpCron 

@@ -6,10 +6,10 @@
 # All our scripts are going to be stored here, this just moves the 
 # pwd to the stoarge directory for the scripts
 cd ~/.rsync/
-echo 'Please enter the name of the script (Pi-Sync_*Your input*.sh)'
+echo "Please enter the Pi's Hostname"
 read hostName
 echo 'This is the current configuration, Press ctrl+C if you do not wish to make changes, otherwise hit enter'
-head Pi-Sync_$hostName.sh
+cat Pi-Sync_$hostName.sh | grep rsync
 # This presents the user with the option of either continuing or stopping based on current configuration
 read
 echo 'Input the IP address'

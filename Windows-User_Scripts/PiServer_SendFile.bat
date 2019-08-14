@@ -1,4 +1,7 @@
+:: ajaxx . delete-button
 @echo off
+:: Pretty cool tbh, sends all of the files that are in the folder `Files-To-Send` 
+:: This is basically only for Bubbs
 echo Confirm that the file(s) you are sending are in the folder `Files-To-Send`
 echo Press `Enter` to continue
 cls

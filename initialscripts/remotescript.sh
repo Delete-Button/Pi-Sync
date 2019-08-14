@@ -16,6 +16,6 @@ if [ ! -f authorized_keys ]; then touch authorized_keys; fi
 # Confirms permissions of the `authorized_keys` file and appends the public key to it
 chmod 600 authorized_keys
 cat $hostName.pub >> authorized_keys
-#Changes the pwd so that the script can delete itself off of the target / remote machine
+#Changes the working directory so that the script can delete itself off of the target / remote machine
 cd ~
 rm remotescript.sh

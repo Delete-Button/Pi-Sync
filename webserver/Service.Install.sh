@@ -1,4 +1,5 @@
 #/bin/bash!
+# ajaxx . delete-button
 echo 'yee'
 sudo apt update && sudo apt upgrade -y
 sudo apt install nginx -y 
@@ -11,6 +12,6 @@ sudo systemctl start php7.2-fpm && sudo systemctl enable php7.2-fpm && systemctl
 echo 'Hit enter if the above reads "php7.2-fpm.service is Active (running)", CTRL + C if not'
 read phpcontinue
 sudo rm /etc/nginx/sites-enabled/default
-sudo mv default.conf /etc/nginx/conf.d/
+sudo cp default.conf /etc/nginx/conf.d/
 ## need to test before deployment
 sudo echo "php_admin_value[date.timezone] = America/Phoenix" >> /etc/php/7.2/fpm/pool.d/www.conf

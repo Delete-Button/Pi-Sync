@@ -17,7 +17,7 @@ read IP
 # This is the (re)configuration of the Source Directory
 # otherwise known as the source of the data being synced to the _remote_ device
 echo 'Input the Source Directory (from the following as written)'
-ls /samba/pi/pishare/
+ls /samba/pi/pishare/*
 read srcPath
 # Presents the User with the current changes and allows for another opportunity to cancel
 echo "IP: $IP, Source Directory: pishare/$srcPath/"
@@ -27,4 +27,6 @@ echo 'Reconfiguring Script'
 # Pushes the required data to the script, reconfiguring it and letting the user know what is happening
 echo '#/bin/bash!' > Pi-Sync_$hostName.sh
 echo "rsync --progress -avz --delete-before -e \"ssh -i /home/pi/.ssh/$hostName\" /samba/pi/pishare/$srcPath/ pi@$IP:/home/pi/Desktop/share/" >> /home/pi/.rsync/Pi-Sync_$hostName.sh
+sleep 1
+clear
 echo 'Reconfigure Complete'

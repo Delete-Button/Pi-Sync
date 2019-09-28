@@ -56,6 +56,7 @@ systemctl restart smbd
 apt install tasksel
 
 tasksel install xfce4-slim
+
 service slim start
 
 cp x11vnc /home/pi/.config/autostart/

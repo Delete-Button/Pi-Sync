@@ -7,4 +7,3 @@ Exec=x11vnc -forever -usepw -display :0 -ultrafilexfer
 StartupNotify=false
 Terminal=false
 Hidden=false
-

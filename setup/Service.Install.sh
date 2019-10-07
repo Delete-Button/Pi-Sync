@@ -19,7 +19,6 @@ echo 'haw'
 # Straight up Ripped from:
 ## https://linuxize.com/post/how-to-install-and-configure-samba-on-ubuntu-18-04/
 ## and https://raymii.org/s/tutorials/SAMBA_Share_with_Active_Directory_Login_on_Ubuntu_12.04.html
-## Not sure of exact author :^(
 apt install ntp krb5-user samba cifs-utils smbclient winbind libnss-winbind
 systemctl status nmbd
 echo "server 192.168.241.208"
@@ -54,13 +53,9 @@ systemctl restart nmbd
 systemctl restart winbind
 systemctl restart smbd
 apt install tasksel
-
 tasksel install xfce4-slim
-
 service slim start
-
 cp x11vnc /home/pi/.config/autostart/
 cp X11VNC.desktop /home/pi/.config/autostart/
-
 clear
 echo "Done"

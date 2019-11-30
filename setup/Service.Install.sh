@@ -52,10 +52,5 @@ chgrp -R "Domain Users" /samba/PiShare/
 systemctl restart nmbd
 systemctl restart winbind
 systemctl restart smbd
-apt install tasksel
-tasksel install xfce4-slim
-service slim start
-cp x11vnc /home/pi/.config/autostart/
-cp X11VNC.desktop /home/pi/.config/autostart/
 clear
 echo "Done"

@@ -8,7 +8,7 @@ apt update &&  apt upgrade -y
 apt install nginx -y 
 apt install php7.2 php7.2-fpm php7.2-cli php-common php7.2-common php7.2-json php7.2-opcache php7.2-readline php7.2-mbstring php7.2-xml php7.2-gd php7.2-curl -y 
 systemctl enable nginx &&  systemctl start nginx && systemctl status nginx
-Chown www-data:www-data /usr/share/nginx/html/ -R 
+chown www-data:www-data /usr/share/nginx/html/ -R 
 systemctl start php7.2-fpm &&  systemctl enable php7.2-fpm && systemctl status php7.2-fpm
 rm /etc/nginx/sites-enabled/default
 cp default.conf /etc/nginx/conf.d/
@@ -52,5 +52,10 @@ chgrp -R "Domain Users" /samba/PiShare/
 systemctl restart nmbd
 systemctl restart winbind
 systemctl restart smbd
+echo "Enter a strong Password for use with VNC access"
+sudo apt install x11vnc -y
+x11vnc -storepasswd
+cp ~/Pi-Sync/setup/x11vnc ~/.config/autostart/
+cp ~/Pi-Sync/setup/X11VNC.desktop ~/.config/autostart/
 clear
 echo "Done"

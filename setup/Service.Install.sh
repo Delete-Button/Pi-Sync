@@ -28,6 +28,13 @@ echo "search ultrastarus.com" >> etc/resolv.conf
 cp /etc/krb5.conf /etc/krb5.conf.bak
 cat krbconf > /etc/krb5.conf
 clear
+echo "Please enter the information for the piserv AD user"
+echo "The applicable information will be in the FreshDesk Solutions"
+echo "Once the password has been written in, press `ctrl+o` `enter` `ctrl+x` `enter`"
+echo "Press Enter when ready"
+if [ ! -d /root/.cred/ ]; then mkdir /root/.cred/; fi
+cp .cred /root/.cred/
+nano /root/.cred/.cred
 echo "Enter the password :^)"
 kinit piserv
 klist
@@ -52,10 +59,8 @@ chgrp -R "Domain Users" /samba/PiShare/
 systemctl restart nmbd
 systemctl restart winbind
 systemctl restart smbd
-echo "Enter a strong Password for use with VNC access"
-sudo apt install x11vnc -y
-x11vnc -storepasswd
-cp ~/Pi-Sync/setup/x11vnc ~/.config/autostart/
-cp ~/Pi-Sync/setup/X11VNC.desktop ~/.config/autostart/
 clear
+echo "Setting up SSH"
+cp sshd_config /etc/ssh/sshd_config
+cp .bashrc /home/pi/.bashrc
 echo "Done"

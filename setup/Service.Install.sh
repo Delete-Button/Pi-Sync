@@ -74,6 +74,19 @@ systemctl restart nmbd
 systemctl restart winbind
 systemctl restart smbd
 clear
+# Adds the 4:30 AM boxofcxml.001 file sync to the root crontab
+touch tmpcron
+crontab -l > tmpcron
+echo "30 4 * * 4 /home/pi/Pi-Sync/webserver/./xml-Sync" >> tmpcron
+crontab tmpcron
+rm tmpcron
+chmod 700 /home/pi/Pi-Sync/webserver/xml-Sync
+# Adds in the remount and AD fix scripts to a folder named `.script`
+if [ ! -d /home/pi/.script/ ]; then mkdir /home/pi/.script/; fi
+chmod 770 Remount.sh
+chmod 770 AD-Connect.sh
+cp AD-Connect.sh /home/pi/.script/
+cp Remount.sh /home/pi/.script/
 echo "Setting up SSH"
 if [ ! -d /home/pi/.ssh/ ]; then mkdir /home/pi/.ssh/; fi
 cp .bashrc /home/pi/.bashrc
